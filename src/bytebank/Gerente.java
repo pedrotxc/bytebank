@@ -1,24 +1,14 @@
 package bytebank;
 
-public class Gerente extends Funcionario{
+public class Gerente extends Funcionario implements Autenticavel{
+	
 	private String login;
-	private String senha;
+		
+	private AutenticaUtil autenticaUtil;
 	
-	public boolean autentica(String senha) {
-		if(this.senha == senha) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean autentica(String senha, String login) {
-		if(this.senha == senha && this.login == login) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	public Gerente() {
+		this.autenticaUtil = new AutenticaUtil();
+	}	
 	
 	public double getBonificacao() {
 		return super.getBonificacao() + super.getSalario();
@@ -32,11 +22,13 @@ public class Gerente extends Funcionario{
 		this.login = login;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
+	@Override
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.autenticaUtil.setSenha(senha);
+	}
+	
+	@Override
+	public boolean autentica(String senha) {
+		return this.autenticaUtil.autentica(senha);
 	}
 }

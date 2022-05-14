@@ -6,6 +6,11 @@ public class Conta {
 	private Cliente cliente;
 	private double saldo;
 	
+	public Conta (String agencia, String conta) {
+		this.agencia = agencia;
+		this.conta = conta;
+	}
+	
 	public boolean depositar(double valorDepositado) {
 		this.saldo += valorDepositado;
 		return true;

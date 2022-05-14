@@ -1,9 +1,11 @@
 package bytebank;
 
-public class Cliente {
+public class Cliente implements Autenticavel{
 	private String nome;
 	private String cpf;
 	private String profissao;
+	
+	private AutenticaUtil autenticaUtil;
 	
 	public String getNome() {
 		return nome;
@@ -22,5 +24,15 @@ public class Cliente {
 	}
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
+	}
+	
+	@Override
+	public void setSenha(String senha) {
+		this.autenticaUtil.setSenha(senha);
+		
+	}
+	@Override
+	public boolean autentica(String senha) {
+		return this.autenticaUtil.autentica(senha);
 	}	
 }
